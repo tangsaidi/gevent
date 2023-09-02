@@ -214,6 +214,8 @@ jobs:
           CPPFLAGS: "-O3"
           # Build for both architectures
           ARCHFLAGS: "-arch x86_64 -arch arm64"
+          # Force the wheel tag.
+          _PYTHON_HOST_PLATFORM: "macosx-11.0-universal2"
       - name: Check gevent build
         run: |
           ls -l dist
