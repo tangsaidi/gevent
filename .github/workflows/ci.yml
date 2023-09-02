@@ -201,8 +201,7 @@ jobs:
           # (I've verified that the .so files are in fact universal, with both architectures.)
           echo 'Done building'
           ls -l dist
-          (wheel tags --abi-tag universal2 dist/*x86_64.whl && rm dist/*universal2*universal2.whl) || true
-          rm dist/*universal2*x86_86.whl || true
+          (wheel tags --abi-tag universal2 dist/*x86_64.whl && ((rm dist/*universal2*universal2.whl || rm dist/*universal2*x86_86.whl) || rm dist/*x86_64.whl)) || true
           # XXX: That can produce invalid filenames, for some reason. 3.11 came up with
           # gevent-23.7.1.dev0-cp311-universal2-macosx_10_9_universal2.whl, which is not valid.
           # gevent-23.9.1.dev0-cp38-universal2-macosx_11_0_x86_64.whl has also shown up.
