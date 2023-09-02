@@ -199,7 +199,9 @@ jobs:
           # Something in the build system isn't detecting that we're building for both,
           # so we're getting tagged with just x86_64. Force the universal2 tag.
           # (I've verified that the .so files are in fact universal, with both architectures.)
-          wheel tags --remove --abi-tag universal2 dist/*x86_64.whl || true
+          echo 'Done building'
+          ls -l dist
+          (wheel tags --abi-tag universal2 dist/*x86_64.whl && rm dist/*universal2*universal2.whl) || true
           # XXX: That can produce invalid filenames, for some reason. 3.11 came up with
           # gevent-23.7.1.dev0-cp311-universal2-macosx_10_9_universal2.whl, which is not valid.
           # It's not clear why, because greenlet didn't do that. Maybe because it was already universal?
